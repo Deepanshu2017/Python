@@ -1,0 +1,12 @@
+https://www.hackerearth.com/problem/algorithm/karan-and-even-numbers-1/
+
+# *-* utf-8 *-*
+
+while True:
+	T = int(raw_input())
+	if (T == -1):
+		break
+	elif not(T % 2):
+		print T
+	
+	

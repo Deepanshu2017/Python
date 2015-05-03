@@ -1,0 +1,9 @@
+http://www.codechef.com/problems/TEST/
+
+# -*- coding: utf-8 -*-
+
+while True:
+    T = int(raw_input())
+    if (T == 42):
+        break
+    print T

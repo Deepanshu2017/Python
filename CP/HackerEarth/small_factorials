@@ -1,0 +1,14 @@
+https://www.hackerearth.com/problem/algorithm/small-factorials/
+
+# *-* coding: utf-8 *-*
+
+T = int(raw_input())
+
+for i in range(0,T):
+	N = int(raw_input())
+	j = N - 1
+	while j:
+		N = N * j
+		j = j - 1
+		
+	print N

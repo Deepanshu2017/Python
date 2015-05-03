@@ -1,0 +1,15 @@
+http://www.codechef.com/problems/INTEST/
+
+# -*- coding: utf-8 *-*
+ 
+inp = raw_input()
+A,B = inp.split(' ')
+N = int(A)
+K = int(B)
+count = 0
+for i in range(0,int(N)):
+    T = int(raw_input())
+    if not(T % K):
+        count += 1
+        
+print count 

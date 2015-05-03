@@ -1,0 +1,10 @@
+https://www.hackerrank.com/challenges/solve-me-second
+
+# *-* coding: utf-8 *-*
+T = int(raw_input())
+for i in range(0,T):
+    value = raw_input()
+    temp1,temp2 = value.split(' ')
+    A = int(temp1)
+    B = int(temp2)
+    print A + B

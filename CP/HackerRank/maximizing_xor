@@ -1,0 +1,14 @@
+https://www.hackerrank.com/challenges/maximizing-xor
+
+# *-* coding: utf-8 *-*
+
+L = int(raw_input())
+R = int(raw_input())
+X = 0
+MAX = 0
+for i in range(L,R+1):
+    for j in range(L,R+1):
+        if i ^ j > MAX:
+            MAX = i ^ j
+            
+print MAX

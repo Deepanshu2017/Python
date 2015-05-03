@@ -1,0 +1,13 @@
+http://www.codechef.com/problems/FCTRL/
+
+# -*- coding: utf-8 -*-
+T = int(raw_input())
+for i in range(0,T):
+    num = int(raw_input())
+    five = 5
+    count = 0
+    while ( five <= num ):
+        temp = num
+        count += temp / five
+        five *= 5
+    print count

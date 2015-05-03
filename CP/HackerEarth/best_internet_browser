@@ -1,0 +1,16 @@
+www.hackerearth.com/problem/algorithm/the-best-internet-browser-3/
+
+# *-* coding: utf-8 *-*
+T = int(raw_input())
+
+for i in range(0,T):
+	my_string = raw_input()
+	output = len(my_string)
+	my_string = my_string.replace("www.","",1)
+	my_string = my_string.replace('a',"")
+	my_string = my_string.replace('e',"")
+	my_string = my_string.replace('i',"")
+	my_string = my_string.replace('o',"")
+	my_string = my_string.replace('u',"")
+	inp = len(my_string) + 1
+	print str(inp) + '/' + str(output)
