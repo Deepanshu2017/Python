@@ -1,0 +1,15 @@
+http://www.codechef.com/problems/HS08TEST/
+
+# -*- coding: utf-8 -*-
+ 
+temp = raw_input()
+t1,t2 = temp.split()
+ 
+A = int(t1)
+B = float(t2)
+if (A % 5):
+    print "%0.2f" % B
+elif (A + 0.50 > B):
+    print "%0.2f" % B
+else:
+    print "%0.2f" % (B - A - 0.5)
