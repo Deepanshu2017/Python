@@ -1,0 +1,27 @@
+https://www.hackerearth.com/problem/algorithm/castles-stones/description/
+
+# *-* coding: utf-8 *-*
+
+T = int(raw_input())
+for i in range(0,T):
+	M = int(raw_input())
+	s = raw_input()
+	lst = s.split()
+	N = int(lst[0])
+	lst.pop(0)
+	lst.sort()
+	j = N - 1
+	i = 0
+	res = 0
+	while ( i <= j):
+		if(int(lst[j]) > M):
+				j -= 1
+		elif(int(lst[i]) + int(lst[j]) > M):
+				j -= 1
+				res += 1
+		else:
+			i += 1
+			j -= 1
+			res += 1
+			
+	print res
