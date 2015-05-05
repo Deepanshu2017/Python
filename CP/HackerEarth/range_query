@@ -1,0 +1,40 @@
+https://www.hackerearth.com/problem/algorithm/range-query/description/
+
+# *-* coding: utf-8 *-*
+
+N = int(raw_input())
+s = raw_input()
+lst = s.split()
+Q = int(raw_input())
+
+"""
+#This is a bad way to Initialize a 2D list
+Hash = []
+for i in range(0,123):
+	new = []
+	for j in range(0,12345):
+		new.append(0)
+	Hash.append(new)
+"""
+
+Hash = [[0 for i in range(12349)] for j in range(123)]
+
+for i in range(0,N):
+	Hash[int(lst[i])][i] = 1
+
+for i in range(0,122):
+	for j in range(1,12344):
+		Hash[i][j] += Hash[i][j - 1]
+				
+		
+for i in range(0,Q):
+	s = raw_input()
+	X,Y,val = s.split()
+	X = int(X)
+	Y = int(Y)
+	val = int(val)
+	if not X:
+		print Hash[val][Y]
+	else:
+		print Hash[val][Y] - Hash[val][X - 1]
+	
