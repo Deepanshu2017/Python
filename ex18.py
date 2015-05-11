@@ -6,6 +6,7 @@ def print_two(*args):
     #args[0] = str("Deepanshu")
     # To do the above read article on this link and you will never do this type of stupid things again
     #http://www.jeffknupp.com/blog/2012/11/13/is-python-callbyvalue-or-callbyreference-neither/
+    """Also '*' before argument name in function means that this function can take more then 2 argument and all arguments will be assigned to that name after * as a tuple as in above code args will contain a tuple"""
 
 def print_two_again(zed,show):
     print "argv1: %s  argv2: %s" % (zed,show)
