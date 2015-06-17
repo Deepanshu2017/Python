@@ -1,0 +1,6 @@
+To run this application you need python 2.7 installed in your machine with 
+twitter and apscheduler packages installed in it. On Linux machines Python 2.7 is pre-installed and
+you can install twitter and apscheduler by running
+
+pip install python
+pip install apscheduler
