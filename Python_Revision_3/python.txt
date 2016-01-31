@@ -1,0 +1,159 @@
+-> Python console is also known as repr (read-eval-print-repeat)
+-> foo, bar, baz are metasyntactic variables
+-> Every thing is object.
+-> for-else loop will execute else part if for loop is exhausted and doesn't
+   encounter any break statement. (same with while-else loop)
+-> function will take *args as variable arguments and **kwargs will take
+   keyword and arguments in function parameter.
+-> It is safe to open file in 'with open(path) as file_name:' and indented block
+-> Lambdas are anonymous functions
+-> map, filter and reduce(from functools) are nice functions
+   map                       -> map(pow, [1, 2, 3], [4, 5, 6])
+   filter		     -> filter(lambda x: x % 3 == 0, [1, 2, 3, 4, 5, 6])
+   reduce		     -> reduce(lambda x: x + y, [1, 2,3])
+-> Generators are iterator but they are lazy means they generate value on demand
+   (yield in function). They can be used once only and forward only.
+   gen = (x*x for x in range(10)) (gen can be used on time only)
+-> Decorators provide a way to modify existing functions without changing
+   original functions!
+-> itertools is a nice module with functions such as
+   count(parameter)          -> counting start from passed argument
+   cycle(iterator)           -> cycle a iterator like list
+   repeat(object [,num])     -> Repeat an object infinity time if num is not
+   specified
+   takewhile(arg1, arg2)     -> pick value from arg2 unitll arg1 is true
+   accumulate(arg1 [,arg2])  -> accumulate entire arg1 iterator
+   chain(arg1, arg2)	     -> join two list or iterator of same type
+   product(arg1, arg2)	     ->	cartision product of two iterator
+   permutations(arg1)	     -> return permutations of arg1 iterator
+   dropwhile(arg1, arg2)     -> drop value from arg2 untill arg1 is true
+-> print(args, sep=' ', end='\n', file=sys.stdout, flush=False)
+-> isinstance(object, classname)
+-> object.__doc__ returns string of document of that object
+-> keywords are 33 in python3
+   False    class     finally	is		return
+   None	    continue  for	lambda		try
+   True	    def	      from	nonlocal	while
+   and	    del	      global	not		with
+   as	    elif      if	or		yield
+   assert   else      import	pass
+   break    except    in	raise
+
+-> assert 1 + 1 == 2, 'This is optional part'
+-> nonlocal is used declare a variable inside a nested variable
+   def spam():
+       eggs = 5
+       def sausages():
+       	   nonlocal spam
+	   spam = 10
+-> A sequnce of statements are functions and method are like function but tied
+   to objects
+-> use functions and avoid repetitive code abide by WET (Write Everything Twice
+   / We Enjoy Typing)
+-> A function that returns nothing returns None
+-> Dictionary keys can be immutable only
+-> useful functions
+   join
+   replace
+   startswith
+   endswith
+   lower
+   upper
+   split
+   replace
+   min
+   max
+   abs
+   sum
+   all
+   any
+   enumerate
+-> raise (Exception name)
+-> sys.path will give you the list of locations where the modules will be
+   searched when importing in the program
+-> To create a python package create a folder and insert a file named
+   '__init__.py' (you can even leave that file empty)
+-> Binary numbers     	-> 0b
+   Octal		-> 0o
+   Hexadecimal		-> 0x
+-> decimal.Decimal('float_number') can be used for precise floating point number
+   calculation
+-> fractions.Fractions() is also a good method for using fraction numbers
+-> Set are mutable but frozenset are immutable
+-> Some error name
+   ZeroDivisionError
+   IndexError
+   TypeError
+   IOError
+   SyntaxError
+   ValueError
+   NameError
+   ImportError
+   KeyError
+   FileExistsError
+-> Open file using with keyword is recommended
+-> File modes
+   r for reading
+   w for writing
+   a for append mode
+   x for exclusive creation FileExistsError if file already exists (write only)
+   r+ for reading and writing (Important: Will not truncate file)
+   w+ for reading and writing (Important: Will TRUNCATE file)
+   rb+ for reading or writing binary file
+   wb+ for writing binary file
+   a+ opens for appending and reading
+-> Duck typing means assume that the user of the class is intelligent enough to
+   use it correctly.
+-> Attributes of an object can be created on the fly
+   and can be deleted on the fly
+   class Spam:
+       def __init__(self, eggs = 0):
+           self.eggs = eggs
+       def display(self):
+       	   print('eggs are: ', eggs)
+
+   if __name__ == '__main__':
+       s1 = Spam()
+       s2 = Spam()
+       s1.disply()
+       s2.display()
+       s1.attr = 5
+       print(s1.attr) # Output is 5 and attr is created for s1 only
+       print(s2.attr) # AttributeError attr is not definied for s2
+       del(s1.attr)
+       print(s1.attr) # AttributeError
+       del(Spam.display)
+       s1.display     # AttributeError
+       s2.display     # AttributeError
+-> When we delete an object of a class The name bind to that object is deleted
+   not the object itself. It will be deleted only after program is called and
+   destroyed by garbage collector.
+-> When calling base class method from derived class use super().methodname()
+-> Every class in python is derived from 'object' class and all objects are
+   instance of 'object' class
+-> In multiple inheritance any specific attribute is searched in the current
+   class. If not found, search continues into parent class in depth-first,
+   left-right fashion without searching same class twice. suppose a class
+
+   	        +-------+	       +-------+
+      	    | Base1 |        | Base2 |
+	          +-------+	       +-------+
+	             \		            /
+      	       	\	             /
+       	         \	          /
+        	        \	         /
+	 	               \   	    /
+		                \	     /
+		                 \    /
+		                  \ /
+		            +--------------+   
+		            | MultiDerived |
+		            +--------------+
+
+   So in the example of MultiDerived class the search order is
+   [MultiDerived, Base1, Base2, object]. This order is also called linearization
+   of MultiDerived class and the set of rules to find this order is also called
+   Method Resolution Order (MRO)
+-> MRO of a class can be viewed as the __mro__ attribute of mro() method. The
+   former returns a tuple while the later returns a list.
+->
