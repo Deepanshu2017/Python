@@ -153,7 +153,9 @@
    So in the example of MultiDerived class the search order is
    [MultiDerived, Base1, Base2, object]. This order is also called linearization
    of MultiDerived class and the set of rules to find this order is also called
-   Method Resolution Order (MRO)
+   Method Resolution Order (MRO) (see file inheritance.py)
 -> MRO of a class can be viewed as the __mro__ attribute of mro() method. The
    former returns a tuple while the later returns a list.
-->
+-> __new__ method actually creates the instance of a class. __new__ is a static
+   method while __init__ method is called after __new__ but before returning to
+   the caller. __new__ create object and __init__ customize it. (see file new.py)
