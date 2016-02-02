@@ -159,3 +159,85 @@
 -> __new__ method actually creates the instance of a class. __new__ is a static
    method while __init__ method is called after __new__ but before returning to
    the caller. __new__ create object and __init__ customize it. (see file new.py)
+-> Suppose you have a var with the name of the attribute you want to set instead
+   of just knowing the name you have to use builtin setattr or class magic
+   method __setattr__, also a common use is with **kwargs
+   class A:
+       def __init__(**kwargs):
+           for k,w in kwargs.items():
+              setattr(self, k, w)
+              # self.__setattr__(k, w)
+-> Magic methods are special methods which have double underscores at the
+   beginning and end of their names. They are also known as dunders.
+   Their are various methods for operator overloading
+   __add__                  -> a + b
+   __sub__                  -> a - b
+   __mul__                  -> a * b
+   __truediv__              -> a / b
+   __floordiv__                     -> a // b
+   __lshift__               -> a << b
+   __rshift__               -> a >> b
+   __and__                  -> a & b
+   __or__                   -> a | b
+   __xor__                  -> a ^ b
+   __invert__               -> ~a
+   __pow__                  -> a ** b
+   __mod__                  -> a % b
+   __lt__                   -> a < b
+   __le__                   -> a <= b
+   __gt__                   -> a > b
+   __ge__                   -> a >= b
+   __eq__                   -> a == b
+   __ne__                   -> a != b (If __ne__ is not defined and __eq__ is
+                                       defined then it will return reverse of
+                                       __eq__)
+   __len__                  -> len(a)
+   __invert__               -> ~a
+   __pow__                  -> a ** b
+   __mod__                  -> a % b
+   __lt__                   -> a < b
+   __le__                   -> a <= b
+   __gt__                   -> a > b
+   __ge__                   -> a >= b
+   __eq__                   -> a == b
+   __ne__                   -> a != b (If __ne__ is not defined and __eq__ is
+                                       defined then it will return reverse of
+                                       __eq__)
+   __len__                  -> len(a)
+   __getitem__              -> item = a[idx]
+   __setitem__              -> a[idx] = item
+   __delitem__              -> del(a)
+   __iter__                 -> for iteration
+   __contains__                     -> a in b
+   (see file operator_overloading.py)
+-> Data hiding states that implementation details of a class should be hidden,
+   and a clean standard interface be presented for those who want to use the
+   class. The Python philosophy is slightly different. It is often stated as
+   "We are all consenting adults here", meaning that you shouldn't put
+   arbitrary restrictions on accessing parts of a class.
+-> Their are two types of private methods and attributes
+   weekly private methods/attributes
+   strongly private method/attributes
+   weekly private method/attributes have one underscore in front of their end.
+   This is just a convention but it will produce only one effect, that is
+   'from module_name import *' won't bring variable that start with a single
+   underscore.
+   Strongly private method/attribute have a double underscore at the beginning
+   of their names. This causes their names to be mangled, which means that they
+   can't be accessed from outside the class. They can be used with convention
+   object._Classname__method_name()
+   class Spam:
+       __egg = 7
+       def print_egg(self):
+           print(self.__egg)
+   if __name__ == '__main__':
+       s = Spam()
+       s.print_egg()
+       print(s._Spam__egg)
+       print(s.__egg) # AttributeError
+   (see file private.py)
+-> To reload a module in python2 use 'reload(module_name)' however in python3
+   reload become 'imp.reload(module_name)'. In python3.4 imp is deprecated and
+   reload is added into package importlib so now you have to use
+   import importlib
+   importlib.reload(module_name)
