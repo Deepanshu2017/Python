@@ -241,3 +241,8 @@
    reload is added into package importlib so now you have to use
    import importlib
    importlib.reload(module_name)
+-> class methods and other simple methods are methods which are bound to the
+   class while static methods are plain old methods which does not bounded.
+   class methods are defined with decorator '@classmethod' and takes first
+   argument as cls while static methods are defined with decorator
+   '@staticmethod' and they does not take any additional argument.
