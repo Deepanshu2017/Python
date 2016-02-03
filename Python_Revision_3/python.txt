@@ -245,4 +245,4 @@
    class while static methods are plain old methods which does not bounded.
    class methods are defined with decorator '@classmethod' and takes first
    argument as cls while static methods are defined with decorator
-   '@staticmethod' and they does not take any additional argument.
+   '@staticmethod' and they does not take any additional argument. (see file classmethod_and_staticmethod.py)
