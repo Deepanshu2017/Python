@@ -13,7 +13,18 @@
    reduce		     -> reduce(lambda x: x + y, [1, 2,3])
 -> Generators are iterator but they are lazy means they generate value on demand
    (yield in function). They can be used once only and forward only.
-   gen = (x*x for x in range(10)) (gen can be used on time only)
+   gen = (x*x for x in range(10)) (gen can be used one time only and generate
+       	      	       		  values onyl when needed)
+-> In generators __iter__() and __next__() are implemented automatically. So we
+   can iterate through the items using next()
+-> Like Lambda function Generator expression creates anonymous generator
+   function. Generator expression syntex is same as list comprehension but they
+   uses round parentheses instead of square brackets.
+-> A normal function to return a sequence will make the entire sequence in
+   memory before returning the result. This is an overkill if the number of
+   items in the sequence is very large. Generator implementation of such
+   sequence is memory friendly and is preferred since it only produces one item
+   at a time.
 -> Decorators provide a way to modify existing functions without changing
    original functions!
 -> itertools is a nice module with functions such as
@@ -91,6 +102,7 @@
    ImportError
    KeyError
    FileExistsError
+   StopIteration
 -> Open file using with keyword is recommended
 -> File modes
    r for reading
@@ -135,20 +147,18 @@
    class. If not found, search continues into parent class in depth-first,
    left-right fashion without searching same class twice. suppose a class
 
-   	        +-------+	       +-------+
-      	    | Base1 |        | Base2 |
-	          +-------+	       +-------+
-	             \		            /
-      	       	\	             /
-       	         \	          /
-        	        \	         /
-	 	               \   	    /
-		                \	     /
-		                 \    /
-		                  \ /
-		            +--------------+   
-		            | MultiDerived |
-		            +--------------+
+   	     +-------+	       +-------+
+      	     | Base1 |         | Base2 |
+	     +-------+	       +-------+
+	       \		/
+      	       	\	       /
+       	         \	      /
+        	  \	     /
+	 	   \   	    /
+		    \	   /
+		 +--------------+   
+		 | MultiDerived |
+		 +--------------+
 
    So in the example of MultiDerived class the search order is
    [MultiDerived, Base1, Base2, object]. This order is also called linearization
@@ -158,57 +168,46 @@
    former returns a tuple while the later returns a list.
 -> __new__ method actually creates the instance of a class. __new__ is a static
    method while __init__ method is called after __new__ but before returning to
-   the caller. __new__ create object and __init__ customize it. (see file new.py)
+   the caller. __new__ create object and __init__ customize it. (see file
+   new.py)
 -> Suppose you have a var with the name of the attribute you want to set instead
    of just knowing the name you have to use builtin setattr or class magic
    method __setattr__, also a common use is with **kwargs
    class A:
        def __init__(**kwargs):
            for k,w in kwargs.items():
-              setattr(self, k, w)
-              # self.__setattr__(k, w)
+	       setattr(self, k, w)
+	       # self.__setattr__(k, w)
 -> Magic methods are special methods which have double underscores at the
    beginning and end of their names. They are also known as dunders.
    Their are various methods for operator overloading
-   __add__                  -> a + b
-   __sub__                  -> a - b
-   __mul__                  -> a * b
-   __truediv__              -> a / b
-   __floordiv__                     -> a // b
-   __lshift__               -> a << b
-   __rshift__               -> a >> b
-   __and__                  -> a & b
-   __or__                   -> a | b
-   __xor__                  -> a ^ b
-   __invert__               -> ~a
-   __pow__                  -> a ** b
-   __mod__                  -> a % b
-   __lt__                   -> a < b
-   __le__                   -> a <= b
-   __gt__                   -> a > b
-   __ge__                   -> a >= b
-   __eq__                   -> a == b
-   __ne__                   -> a != b (If __ne__ is not defined and __eq__ is
-                                       defined then it will return reverse of
-                                       __eq__)
-   __len__                  -> len(a)
-   __invert__               -> ~a
-   __pow__                  -> a ** b
-   __mod__                  -> a % b
-   __lt__                   -> a < b
-   __le__                   -> a <= b
-   __gt__                   -> a > b
-   __ge__                   -> a >= b
-   __eq__                   -> a == b
-   __ne__                   -> a != b (If __ne__ is not defined and __eq__ is
-                                       defined then it will return reverse of
-                                       __eq__)
-   __len__                  -> len(a)
-   __getitem__              -> item = a[idx]
-   __setitem__              -> a[idx] = item
-   __delitem__              -> del(a)
-   __iter__                 -> for iteration
-   __contains__                     -> a in b
+   __add__   	     	     -> a + b
+   __sub__		     -> a - b
+   __mul__		     -> a * b
+   __truediv__		     -> a / b
+   __floordiv__		     -> a // b
+   __lshift__		     -> a << b
+   __rshift__		     -> a >> b
+   __and__		     -> a & b
+   __or__		     -> a | b
+   __xor__		     -> a ^ b
+   __invert__		     -> ~a
+   __pow__		     -> a ** b
+   __mod__		     -> a % b
+   __lt__		     -> a < b
+   __le__		     -> a <= b
+   __gt__		     -> a > b
+   __ge__		     -> a >= b
+   __eq__		     -> a == b
+   __ne__		     -> a != b (If __ne__ is not defined and __eq__ is
+   			     	        defined then it will return reverse of
+					__eq__)
+   __len__		     -> len(a)
+   __getitem__		     -> item = a[idx]
+   __setitem__		     -> a[idx] = item
+   __delitem__		     -> del(a)
+   __iter__		     -> for iteration
+   __contains__		     -> a in b
    (see file operator_overloading.py)
 -> Data hiding states that implementation details of a class should be hidden,
    and a clean standard interface be presented for those who want to use the
@@ -245,4 +244,59 @@
    class while static methods are plain old methods which does not bounded.
    class methods are defined with decorator '@classmethod' and takes first
    argument as cls while static methods are defined with decorator
-   '@staticmethod' and they does not take any additional argument. (see file classmethod_and_staticmethod.py)
+   '@staticmethod' and they does not take any additional argument.
+-> Iterator in python is simply an object that can be iterated upon. A object
+   which will return data, one element at a time. Python iterator object must
+   implemented two special methods, __iter__() and __next__(), collectively
+   called the iterator protocol.
+   lst = [1, 2, 3, 4, 5]
+   itr = iter(lst)
+   next(itr) # 1
+   next(itr) # 2
+   itr.__next__() # 3
+-> for loop can iterate over any iterable. Simple implementation of for loop is
+   for element in iterable
+
+   same as
+
+   itr_obj = iter(iterable)
+   while True:
+       try:
+           element = next(itr_obj)
+	   # do some thing
+       except StopIteration:
+           break
+
+   Ironically, for loop iteself uses infinity while loop.
+   (see file my_own_iter.py)
+-> A closure occurs when a function has access to a local variable from an
+   enclosing scope that has finished its execution.
+   def make_printter(msg):
+       def printer():
+           print(msg)
+       return printer
+   my_printer = make_printer('Foo!')
+   my_printer()
+   When make_printer is called, a new Frame is put on the Stack with the
+   Compiled code for the printer function as a contant and the value of msg as a
+   local. It then creates and returns the function. Because the function printer
+   references the msg variable, it is kept alive after the make_printer function
+   has returned.
+   When do we have closure:
+   - We must have a nested function.
+   - The nested function must refer to a value defined in the enclosing function
+   - The enclosing function must return the nested function.
+-> Values that get enclosed in the closure function can be found out. All
+   function objects have a __closure__ attribute that returns a tuple of cell
+   objects if it is a closure function.
+   inner_function_name.__closure__[0].cell_contents # it will give the first
+   						      enclosing elements
+   (see file closure.py)
+-> Decorators add functionality to an existing code. This is also called
+   metaprogramming as a part of the program tries to modify another part of the
+   program at compile time. A decorator is a callable that returns a callable.
+   Basically, a decorator takes in a function, adds some functionality and
+   returns it.
+-> Multiple decorators can be chained. (see file decorator_explored.py)
+-> Properties provides a way of customizing access to instance attributes.
+   (see file properties.py)
