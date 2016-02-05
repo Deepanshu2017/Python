@@ -51,7 +51,7 @@
    break    except    in	raise
 
 -> assert 1 + 1 == 2, 'This is optional part'
--> nonlocal is used declare a variable inside a nested variable
+-> nonlocal is used to declare a variable inside a nested variable
    def spam():
        eggs = 5
        def sausages():
