@@ -300,3 +300,62 @@
 -> Multiple decorators can be chained. (see file decorator_explored.py)
 -> Properties provides a way of customizing access to instance attributes.
    (see file properties.py)
+-> Regular Expressions are a powerful tool for various kind of string
+   maniplulation. They are Domain Specific Langauge (DSL) another example of DSL
+   is SQL.
+   obj = re.match(pattern, text) : search for pattern at the start of the text
+       and return object if match if found else return None.
+       obj.group() return pattern
+       obj.start() return start index
+       obj.end() return end index
+       obj.span() returns a tuple of start and end index
+   re.search(pattern, text) : search for pattern in the entire text and return
+       object if found else return None.
+   re.findall(pattern, text) : return a list of all the matches of pattern
+   re.finditer(pattern, text) : return a iterator
+   re.sub(patter, repl, text, count) : return the string obtained by replacing
+       from leftmost non-overlapping occurrences of the pattern count times
+       in string by the replacement repl. (all if count is not specifie)
+-> '.', '$' etc are called metacharacters in regex.
+    . : represents any single character expcept new line.
+    ^ : represents start of the string
+    $ : represents end of the string
+    * : represents 0 or more number of repetitions of the previous thing.
+       (previous thing could be a single character, a class or a group)
+    + : similar to * except it means 1 or more repetitions of previous thing.
+    ? : 0 or 1 repetition of previous thing.
+    {x, y} : represents repetition of previous thing between x to y times.
+        ex- pattern = r'9{1, 3}$'
+           text = '9'     -> match
+           text = '1'     -> No match
+           text = '99'    -> match
+           text = '999'   -> match
+           text = '9999'  -> No match
+           {1,} is same as +
+           {0,} is same as *
+           {0,1} is same as ?
+    (characters) : represents a group of characters
+    [character class] : any of the characters match
+        ex- [abc][def] will match any character from abc followed by any
+       character from def
+       [A-Z] will find any upper case character from A to Z
+       [0-9] will find any number from 0 to 9
+       [A-Za-z] will find any character form A-Z or a-z
+    [^character range] will invert
+        ex- [^A-Z] will match any character which is not from A to Z
+       other metacharacters like . and $ doesn't mean anything in character
+       class
+    | : works as OR
+-> \number (1-99) matches the expression of the group of that number.
+   ex- pattern = r'(.+) \1'
+   re.match(pattern, 'word word')
+   see it is not same as r'(.+)(.+)' for example
+   pattern = r'[abc|def] \1'
+   re.match(pattern, 'abc abc') -> match
+   re.match(pattern, 'abc def') -> not a match
+-> \d : digits
+   \s : whitespace
+   \w : word charaters
+   \D : matches everything except digits
+   \S : matches everything except whitespace
+   \W : matches everything except word characters
